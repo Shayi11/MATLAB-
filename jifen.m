@@ -1,19 +1,18 @@
 function [Output1,Output2] = jifen(Input1,Input2)
-%jifen=¼Æ·Ö 
-%   ¾ÍÊÇ¼ÆËãÃ¿¸öÕ¾µãµÄµÃ·Ö
-vi0 = Input1; % vi0ÊÇÕ¾µãµÄÈý¸ö²ÎÊý£¬½öÓÐÈý¸öÅ¶~
-sxxian=Input2;
+%jifen=è®¡åˆ†ï¼›å°±æ˜¯ç‰©å…ƒåˆ†æžçš„æ‰“åˆ†  
+vi0 = Input1; % vi0æ˜¯å¾…è¯„ä»·ç‰©å…ƒçš„æŒ‡æ ‡é¡¹
+sxxian=Input2;% ä½ è‡ªå·±åˆ›å»ºçš„ç‰©å…ƒç»å…¸åŸŸ
 
-%ÊµÏÖvij,P1,P2µÄ¼ÆËã
+%å®žçŽ°vij,P1,P2çš„è®¡ç®—
 for m=1:10
-    for n=1:3
+    for n=1:3%æœ¬é¡¹ç›®çš„ç‰©å…ƒä»…æœ‰ä¸‰ä¸ªæŒ‡æ ‡
         vij(m,n)=abs(sxxian(m,2*n)-sxxian(m,2*n-1));
         P1ij(m,n)=abs(vi0(n)-0.5*(sxxian(m,2*n)+sxxian(m,2*n-1)))-0.5*(sxxian(m,2*n)-sxxian(m,2*n-1));
         P2ij(n)=abs(vi0(n)-0.5*sxxian(end,2*n))-0.5*sxxian(end,2*n);
     end
 end
 
-%¼ÆËã¹ØÁªÏµÊýKij
+%è®¡ç®—å…³è”ç³»æ•°Kij
 for m=1:10
     for n=1:3
         if vi0(n)>=sxxian(m,2*n-1) && vi0(n)<=sxxian(m,2*n)
@@ -28,12 +27,12 @@ for m=1:10
     end
 end
 
-%È·¶¨×ÛºÏ¹ØÁª¶ÈKj
+%ç¡®å®šç»¼åˆå…³è”åº¦Kj
 for m=1:10
     Kj(m)=0.2493*Kij(m,1)+0.1571*Kij(m,2)+0.5936*Kij(m,3);
 end
 
-%È·¶¨³öÆÀ·Ö
+%ç¡®å®šå‡ºè¯„åˆ†
 [maxzhi,hang]=max(Kj);
 
 Output1=maxzhi;
